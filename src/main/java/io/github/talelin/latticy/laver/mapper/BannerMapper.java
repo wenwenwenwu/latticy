@@ -1,11 +1,10 @@
 package io.github.talelin.latticy.laver.mapper;
 
-import io.github.talelin.latticy.laver.model.BannerBO;
+import com.baomidou.mybatisplus.core.conditions.Wrapper;
+import com.baomidou.mybatisplus.core.mapper.BaseMapper;
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import io.github.talelin.latticy.laver.model.BannerDO;
 
-import java.util.List;
-
-public interface BannerMapper {
-
-    List<BannerBO> getAllMappers();
+public interface BannerMapper extends BaseMapper<BannerDO> {
 
 }

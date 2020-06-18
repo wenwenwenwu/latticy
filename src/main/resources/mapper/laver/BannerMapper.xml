@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--指定mapper对映的接口-->
-<mapper namespace="io.github.talelin.latticy.laver.mapper.BannerMapper">
-<!--    数据库字段和模型类的映射-->
-    <resultMap id="BaseResultMap" type="io.github.talelin.latticy.laver.model.BannerBO">
+<mapper namespace="io.github.talelin.latticy.laver.mapper.TestMapper">
+    <!--    数据库字段和模型类的映射-->
+    <resultMap id="BaseResultMap" type="io.github.talelin.latticy.laver.model.BannerDO">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
@@ -15,7 +15,13 @@
         <result column="delete_time" jdbcType="TIMESTAMP" property="deleteTime"/>
     </resultMap>
 
-    <select id="getAllMappers" resultMap="BaseResultMap">
+    <select id="getAllBanners" resultMap="BaseResultMap">
         SELECT * FROM banner
     </select>
+    <!--useGeneratedKeys="true" keyProperty="id"获取数据库主键字段并映射到模型的id参数-->
+    <insert id="insertBanner" useGeneratedKeys="true" keyProperty="id"
+            parameterType="io.github.talelin.latticy.laver.model.BannerDO">
+        INSERT Into banner(name,title)
+        VALUES(#{name},#{title})
+    </insert>
 </mapper>
