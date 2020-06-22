@@ -2,10 +2,12 @@ package io.github.talelin.latticy.vo;
 
 import io.github.talelin.autoconfigure.bean.Code;
 import io.github.talelin.autoconfigure.util.RequestUtil;
+import io.github.talelin.latticy.common.configuration.CodeMessageConfiguration;
 import io.github.talelin.latticy.common.util.ResponseUtil;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 
 
@@ -34,6 +36,7 @@ public class UnifyResponseVO<T> {
 
     public UnifyResponseVO(int code) {
         this.code = code;
+        this.message = (T) CodeMessageConfiguration.getMessage(code);
         this.request = RequestUtil.getSimpleRequest();
     }
 

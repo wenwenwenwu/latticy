@@ -18,7 +18,9 @@
     <select id="getAllBanners" resultMap="BaseResultMap">
         SELECT * FROM banner
     </select>
+
     <!--useGeneratedKeys="true" keyProperty="id"获取数据库主键字段并映射到模型的id参数-->
+<!--    如果-->
     <insert id="insertBanner" useGeneratedKeys="true" keyProperty="id"
             parameterType="io.github.talelin.latticy.laver.model.BannerDO">
         INSERT Into banner(name,title)
