@@ -1,9 +1,7 @@
-package io.github.talelin.latticy.laver.mapper;
+package io.github.talelin.latticy.mapper;
 
 import com.baomidou.mybatisplus.core.mapper.BaseMapper;
-import io.github.talelin.latticy.laver.model.BannerDO;
-import org.apache.ibatis.annotations.Select;
-import org.springframework.stereotype.Repository;
+import io.github.talelin.latticy.model.BannerDO;
 
 import java.util.List;
 

@@ -1,6 +1,6 @@
-package io.github.talelin.latticy.laver.service;
+package io.github.talelin.latticy.service;
 
-import io.github.talelin.latticy.laver.model.BannerDO;
+import io.github.talelin.latticy.model.BannerDO;
 
 import java.util.List;
 

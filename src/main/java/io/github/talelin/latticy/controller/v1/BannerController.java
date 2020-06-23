@@ -1,11 +1,11 @@
-package io.github.talelin.latticy.laver.controller.cms;
+package io.github.talelin.latticy.controller.v1;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.github.talelin.latticy.common.mybatis.Page;
-import io.github.talelin.latticy.laver.bo.BannerWithItemsBO;
-import io.github.talelin.latticy.laver.dto.BannerDTO;
-import io.github.talelin.latticy.laver.model.BannerDO;
-import io.github.talelin.latticy.laver.service.BannerService;
+import io.github.talelin.latticy.bo.BannerWithItemsBO;
+import io.github.talelin.latticy.dto.BannerDTO;
+import io.github.talelin.latticy.model.BannerDO;
+import io.github.talelin.latticy.service.impl.BannerServiceImpl;
 import io.github.talelin.latticy.vo.CreatedVO;
 import io.github.talelin.latticy.vo.DeletedVO;
 import io.github.talelin.latticy.vo.PageResponseVO;
@@ -25,7 +25,7 @@ import javax.validation.constraints.Positive;
 public class BannerController {
 
     @Autowired
-    private BannerService bannerService;
+    private BannerServiceImpl bannerService;
 
     @PostMapping
     public CreatedVO creat(@RequestBody @Validated BannerDTO bannerDTO){

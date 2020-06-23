@@ -2,9 +2,9 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <!--指定mapper对映的接口-->
-<mapper namespace="io.github.talelin.latticy.laver.mapper.TestMapper">
+<mapper namespace="io.github.talelin.latticy.mapper.TestMapper">
     <!--    数据库字段和模型类的映射-->
-    <resultMap id="BaseResultMap" type="io.github.talelin.latticy.laver.model.BannerDO">
+    <resultMap id="BaseResultMap" type="io.github.talelin.latticy.model.BannerDO">
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="title" jdbcType="VARCHAR" property="title"/>
@@ -22,7 +22,7 @@
     <!--useGeneratedKeys="true" keyProperty="id"获取数据库主键字段并映射到模型的id参数-->
 <!--    如果-->
     <insert id="insertBanner" useGeneratedKeys="true" keyProperty="id"
-            parameterType="io.github.talelin.latticy.laver.model.BannerDO">
+            parameterType="io.github.talelin.latticy.model.BannerDO">
         INSERT Into banner(name,title)
         VALUES(#{name},#{title})
     </insert>

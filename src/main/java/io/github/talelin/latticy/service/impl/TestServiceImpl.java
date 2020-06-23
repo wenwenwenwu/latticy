@@ -1,8 +1,8 @@
-package io.github.talelin.latticy.laver.service.Impl;
+package io.github.talelin.latticy.service.impl;
 
-import io.github.talelin.latticy.laver.mapper.TestMapper;
-import io.github.talelin.latticy.laver.model.BannerDO;
-import io.github.talelin.latticy.laver.service.TestService;
+import io.github.talelin.latticy.mapper.TestMapper;
+import io.github.talelin.latticy.model.BannerDO;
+import io.github.talelin.latticy.service.TestService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

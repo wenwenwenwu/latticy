@@ -1,4 +1,4 @@
-package io.github.talelin.latticy.laver.model;
+package io.github.talelin.latticy.model;
 
 import com.baomidou.mybatisplus.annotation.IdType;
 import com.baomidou.mybatisplus.annotation.TableId;
