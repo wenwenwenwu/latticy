@@ -2,12 +2,15 @@ package io.github.talelin.latticy.laver.controller.cms;
 
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.github.talelin.latticy.common.mybatis.Page;
+import io.github.talelin.latticy.laver.bo.BannerWithItemsBO;
 import io.github.talelin.latticy.laver.dto.BannerDTO;
 import io.github.talelin.latticy.laver.model.BannerDO;
 import io.github.talelin.latticy.laver.service.BannerService;
+import io.github.talelin.latticy.vo.CreatedVO;
 import io.github.talelin.latticy.vo.DeletedVO;
 import io.github.talelin.latticy.vo.PageResponseVO;
 import io.github.talelin.latticy.vo.UpdatedVO;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
@@ -24,11 +27,16 @@ public class BannerController {
     @Autowired
     private BannerService bannerService;
 
+    @PostMapping
+    public CreatedVO creat(@RequestBody @Validated BannerDTO bannerDTO){
+        BannerDO bannerDO = new BannerDO();
+        BeanUtils.copyProperties(bannerDTO,bannerDO);
+        this.bannerService.save(bannerDO);
+        return new CreatedVO();
+    }
+
     //    Query
     @GetMapping("/page")
-//    参见数据接收
-//    参见数据校验
-//    参见查询分页数据
     public PageResponseVO<BannerDO> getBanners(@RequestParam(required = false, defaultValue = "0")
                                                @Min(value = 0, message = "{page.number.min}") Integer page,
                                                @RequestParam(required = false, defaultValue = "10")
@@ -37,6 +45,11 @@ public class BannerController {
         Page<BannerDO> pager = new Page<>(page, count);
         IPage<BannerDO> paging = bannerService.getBaseMapper().selectPage(pager, null);
         return new PageResponseVO<>(paging.getTotal(), paging.getRecords(), paging.getCurrent(), paging.getSize());
+    }
+
+    @GetMapping("/{id}")
+    public BannerWithItemsBO getWithItems(@PathVariable @Positive Long id){
+        return bannerService.getWithItems(id);
     }
 
     //    Update
@@ -54,4 +67,5 @@ public class BannerController {
         bannerService.delete(id);
         return new DeletedVO();
     }
+
 }
