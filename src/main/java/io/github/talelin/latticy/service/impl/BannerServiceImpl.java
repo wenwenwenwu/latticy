@@ -42,26 +42,20 @@ public class BannerServiceImpl extends ServiceImpl<BannerMapper, BannerDO> {
         if (bannerDO == null) {
             throw new NotFoundException();
         }
-        this.getBaseMapper().deleteById(id);
+        this.removeById(id);
         //bannerItemIds
         QueryWrapper<BannerItemDO> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(BannerItemDO::getBannerId, id);
-        List<BannerItemDO> bannerItemDOS = bannerItemMapper.selectList(wrapper);
-        List<Long> bannerItemIds = bannerItemDOS.stream()
-                .map(BannerItemDO::getId)
-                .collect(Collectors.toList());
-        this.bannerItemMapper.deleteBatchIds(bannerItemIds);
+        this.bannerItemMapper.delete(wrapper);
     }
 
     public BannerWithItemsBO getWithItems(Long id) {
-        //两次单表查询
-        //查询banner表
+        //banner
         BannerDO bannerDO = this.getById(id);
         if (bannerDO == null) {
             throw new NotFoundException();
         }
-        //查询bannerItem表
-        //条件构造器
+        //bannerItems
         QueryWrapper<BannerItemDO> wrapper = new QueryWrapper<>();
         wrapper.lambda().eq(BannerItemDO::getBannerId, id); //lambda表达式，直接操作模型
         //查询

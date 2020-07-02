@@ -3,6 +3,7 @@ package io.github.talelin.latticy.controller.v1;
 import com.baomidou.mybatisplus.core.metadata.IPage;
 import io.github.talelin.latticy.common.mybatis.Page;
 import io.github.talelin.latticy.bo.BannerWithItemsBO;
+import io.github.talelin.latticy.common.util.PageUtil;
 import io.github.talelin.latticy.dto.BannerDTO;
 import io.github.talelin.latticy.model.BannerDO;
 import io.github.talelin.latticy.service.impl.BannerServiceImpl;
@@ -42,9 +43,12 @@ public class BannerController {
                                                @RequestParam(required = false, defaultValue = "10")
                                                @Min(value = 1, message = "{page.count.min}")
                                                @Max(value = 30, message = "{page.count.max}") Integer count) {
-        Page<BannerDO> pager = new Page<>(page, count);
-        IPage<BannerDO> paging = bannerService.getBaseMapper().selectPage(pager, null);
-        return new PageResponseVO<>(paging.getTotal(), paging.getRecords(), paging.getCurrent(), paging.getSize());
+        Page<BannerDO> pager = new Page<>(page, count); //
+
+        IPage<BannerDO> paging = bannerService.page(pager);
+        //简便方法
+        return PageUtil.build(paging);
+//        return new PageResponseVO<>(paging.getTotal(), paging.getRecords(), paging.getCurrent(), paging.getSize());
     }
 
     @GetMapping("/{id}")
